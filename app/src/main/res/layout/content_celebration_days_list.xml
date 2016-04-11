@@ -1,0 +1,21 @@
+<ListView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/celebrationdays_list"
+    android:name="com.varonesoft.luca.turnista.utils.CelebrationDaysList"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp"
+    tools:context=".utils.CelebrationDaysList"
+    tools:listitem="@android:layout/simple_list_item_2" />
+
+    <!--<fragment xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/fragment"
+        android:name="com.varonesoft.luca.turnista.utils.CelebrationDaysListFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:layout="@layout/fragment_celebration_days_list" />
+        <?xml version="1.0" encoding="utf-8"?>-->
