@@ -20,18 +20,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.CursorAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
-import com.example.luca.calendarioturni.database.Events;
+import com.varonesoft.luca.turnista.database.models.Celebrations;
+import com.varonesoft.luca.turnista.database.models.DayEvents;
 import com.varonesoft.luca.turnista.MainActivity;
 import com.varonesoft.luca.turnista.R;
 
-import org.joda.time.LocalDate;
-
-@SuppressWarnings("ALL")
+//@SuppressWarnings("ALL")
 public class CelebrationDaysList extends AppCompatActivity
         implements LoaderManager.LoaderCallbacks<Cursor> {
 
@@ -79,7 +77,7 @@ public class CelebrationDaysList extends AppCompatActivity
 
         mAdapter = (new CelebrationDaysCursorAdapter(this,
                 R.layout.content_celebration_days_list_row, null,
-                new String[]{Events.Columns.NAME, Events.Columns.START_DAY},
+                new String[]{Celebrations.Columns.NAME, Celebrations.Columns.DATE},
                 new int[]{R.id.celebrationdays_list_name, R.id.celebrationdays_list_date}, 0));
 
         mList.setAdapter(mAdapter);
@@ -223,7 +221,7 @@ public class CelebrationDaysList extends AppCompatActivity
             case DELETE_ID:
                 AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item
                         .getMenuInfo();
-                Uri uri = Uri.parse(Events.URI + "/"
+                Uri uri = Uri.parse(DayEvents.URI + "/"
                         + info.id);
 
                 // The loader is already notified of the changes
@@ -268,7 +266,7 @@ public class CelebrationDaysList extends AppCompatActivity
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         return new CursorLoader(this,
-                Events.URI, null, null, null, null);
+                Celebrations.URI, null, null, null, null);
     }
 
     @Override
@@ -315,12 +313,12 @@ public class CelebrationDaysList extends AppCompatActivity
             TextView name= (TextView) view.findViewById(R.id.celebrationdays_list_name);
             TextView date= (TextView) view.findViewById(R.id.celebrationdays_list_date);
             // Extract properties from cursor
-            String name_string = cursor.getString(cursor.getColumnIndexOrThrow(Events.Columns.NAME));
-            long date_long= cursor.getInt(cursor.getColumnIndexOrThrow(Events.Columns.START_DAY));
-            LocalDate ld = new LocalDate(date_long);
+            String name_string = cursor.getString(cursor.getColumnIndexOrThrow(Celebrations.Columns.NAME));
+            long date_long= cursor.getLong(cursor.getColumnIndexOrThrow(Celebrations.Columns.DATE));
+
             // Populate fields with extracted properties
             name.setText(name_string);
-            date.setText(ld.toString("dd/MM/yyyy"));
+            date.setText(DateTimeFormatter.getDate(date_long));
         }
     }
 }

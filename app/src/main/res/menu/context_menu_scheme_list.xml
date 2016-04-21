@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:title="@string/contextual_move_up"
+        android:id="@+id/context_menu_scheme_list_move_up"/>
+    <item
+        android:title="@string/contextual_move_down"
+        android:id="@+id/context_menu_scheme_list_move_down"/>
+    <item
+        android:title="@string/contextual_delete"
+        android:id="@+id/context_menu_scheme_list_delete"/>
+</menu>

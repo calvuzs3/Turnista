@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <EditTextPreference
+        android:defaultValue="10"
+        android:key="NumberDays"
+        android:title="@string/str_num_days_to_display" />
+
+    <CheckBoxPreference
+        android:defaultValue="false"
+        android:title="@string/str_use24hour"
+        android:key="24Hour" />
+    <CheckBoxPreference
+        android:defaultValue="true"
+        android:title="@string/str_enable_click"
+        android:key="EnableClickEvent" />
+
+</PreferenceScreen>
