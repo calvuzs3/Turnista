@@ -34,11 +34,11 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 public class Schema extends AppCompatActivity implements DatePickerDialog.OnDateSetListener,
-    SchemeMarksFragment.OnListFragmentInteractionListener {
+        SchemeMarksFragment.OnListFragmentInteractionListener {
 
     // IDs of the CursorLoaders
     private int CREATOR_LOADER_ID = 0x01000000;
-    private int SCHEME_LOADER_ID  = 0x10000000;
+    private int SCHEME_LOADER_ID = 0x10000000;
 
     // private Members
     private Creator mCreator;
@@ -71,25 +71,25 @@ public class Schema extends AppCompatActivity implements DatePickerDialog.OnDate
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // Get references to the Views
-        mTextViewDate = (EditText )findViewById(R.id.schema_edit_startdate);
-        mButtonChooseDate = (ImageButton )findViewById(R.id.schema_button_choosedate);
+        mTextViewDate = (EditText) findViewById(R.id.schema_edit_startdate);
+        mButtonChooseDate = (ImageButton) findViewById(R.id.schema_button_choosedate);
         mSpinner = (Spinner) findViewById(R.id.schema_spinner);
-        mButtonAddFromSpinner = (ImageButton )findViewById(R.id.schema_button_add);
+        mButtonAddFromSpinner = (ImageButton) findViewById(R.id.schema_button_add);
 
         // First get a Creator
         getCreator(this);
 
-mButtonChooseDate.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
-        // Set CalendarDateTime Picker
-        DatePickerDialog dpd = DatePickerDialog.newInstance(
-                Schema.this, 2016, 0, 1
-        );
-        dpd.show(getFragmentManager(), "Datepickerdialog");
+        mButtonChooseDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Set CalendarDateTime Picker
+                DatePickerDialog dpd = DatePickerDialog.newInstance(
+                        Schema.this, 2016, 0, 1
+                );
+                dpd.show(getFragmentManager(), "Datepickerdialog");
 
-    }
-});
+            }
+        });
 
         // Lets try this out
 
@@ -128,7 +128,7 @@ mButtonChooseDate.setOnClickListener(new View.OnClickListener() {
         mButtonAddFromSpinner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if ((mMarkId<1) || (mDate == null)) return;
+                if ((mMarkId < 1) || (mDate == null)) return;
                 ContentValues cv = new ContentValues();
                 cv.put(Scheme.Columns.DATE, mDate.getTimeInMillis());
                 cv.put(Scheme.Columns.CREATOR_ID, mCreator._id);
@@ -182,12 +182,12 @@ mButtonChooseDate.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public Loader<Cursor> onCreateLoader(int arg0, Bundle arg1) {
-                return new CursorLoader( Schema.this, Creator.URI, null, null, null, null);
+                return new CursorLoader(Schema.this, Creator.URI, null, null, null, null);
             }
 
             @Override
             public void onLoadFinished(Loader<Cursor> arg0, Cursor c) {
-                if (c!=null) {
+                if (c != null) {
                     if (c.moveToFirst()) {
                         mCreator = new Creator(c);
                         fillViews();
@@ -210,7 +210,7 @@ mButtonChooseDate.setOnClickListener(new View.OnClickListener() {
      */
     private void fillViews() {
         // Set the date
-        if (mCreator.name!= null && mCreator.start_date!=null)
+        if (mCreator.name != null && mCreator.start_date != null)
             mTextViewDate.setText(DateTimeFormatter.getDate(mCreator.start_date));
     }
 
@@ -227,7 +227,7 @@ mButtonChooseDate.setOnClickListener(new View.OnClickListener() {
         mDate.set(Calendar.YEAR, year);
         mDate.set(Calendar.MONTH, monthOfYear);
         mDate.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-        this.mCreator.start_date=mDate.getTimeInMillis();
+        this.mCreator.start_date = mDate.getTimeInMillis();
         fillViews();
     }
 
@@ -239,7 +239,7 @@ mButtonChooseDate.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onListFragmentInteraction(long id, String name) {
         // No methods till now
-        Snackbar.make(null, "id="+id+" name="+name, Snackbar.LENGTH_SHORT)
+        Snackbar.make(null, "id=" + id + " name=" + name, Snackbar.LENGTH_SHORT)
                 .setAction("ACTION", null)
                 .show();
         return;

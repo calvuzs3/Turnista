@@ -14,7 +14,7 @@ import com.varonesoft.luca.turnista.utils.Log;
 /**
  * Created by luca on 13/04/16.
  */
-public class Scheme extends DAO {
+public class Scheme extends DAO implements Cloneable {
 
     // TAG
     private static String TAG = "DB Scheme";
@@ -192,5 +192,15 @@ public class Scheme extends DAO {
      */
     private static void init(SQLiteDatabase database) {
         // Empty
+    }
+
+    @Override
+    public Scheme clone() {
+        try {
+            return (Scheme )super.clone();
+        } catch (CloneNotSupportedException ce) {
+            Log.d(TAG, "CloneNotSupported");
+        }
+        return null;
     }
 }
